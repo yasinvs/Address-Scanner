@@ -99,5 +99,8 @@
   <ItemGroup>
     <None Include="Resources\math-add-icon.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="_YAPILACAKLAR_.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

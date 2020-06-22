@@ -16,6 +16,25 @@ namespace proxytester
         int pingWarning;
         int count;
 
+        internal void EnableDisable(bool value)
+        {
+            switch (value)
+            {
+                case true:
+                    fileToolStripMenuItem.Enabled = true;
+                    listToolStripMenuItem.Enabled = true;
+                    aboutToolStripMenuItem.Enabled = true;
+                    button1.Enabled = true;
+                    break;
+                case false:
+                    fileToolStripMenuItem.Enabled = false;
+                    listToolStripMenuItem.Enabled = false;
+                    aboutToolStripMenuItem.Enabled = false;
+                    button1.Enabled = false;
+                    break;
+            }
+        }
+
         public Form1()
         {
             InitializeComponent();
@@ -34,36 +53,15 @@ namespace proxytester
 
             if (dialogResult == DialogResult.OK)
             {
-
-                pingSuccess = 0;
-                pingError = 0;
-                pingWarning = 0;
-                count = 0;
-
-                label1.Text = "= " + Convert.ToString(pingSuccess);
-                label2.Text = "= " + Convert.ToString(pingError);
-                label3.Text = "= " + Convert.ToString(pingWarning);
-
-                listView1.Items.Clear();
-
                 SettingsClass.txtPath = openFileDialog.FileName;
-                string[] array = File.ReadAllLines(SettingsClass.txtPath);
-
-                foreach (var item in array)
+                if(bckTest.IsBusy != true && bckOpen.IsBusy != true)
                 {
-                    string itemString = item;
-                    if (listView1.FindItemWithText(itemString) == null)
-                    {
-                        if(itemString.Contains(":"))
-                        {
-                            itemString = itemString.Substring(0, itemString.LastIndexOf(":")).Trim();
-                        }
-                        ListViewItem listViewItem = new ListViewItem(itemString);
-                        listView1.Items.Add(listViewItem);
-                    }
+                    bckOpen.RunWorkerAsync();
                 }
-                count = listView1.Items.Count;
-                label4.Text = "= " + Convert.ToString(count);
+                else
+                {
+                    MessageBox.Show(this, "Wait for the current transaction to finish !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
@@ -87,17 +85,23 @@ namespace proxytester
             pingError = 0;
             pingWarning = 0;
 
+            EnableDisable(false);
+            button1.Enabled = true;
+
             for (int i = 0; i < listView1.Items.Count; i++)
             {
-                if(backgroundWorker1.CancellationPending == true)
+                if(bckTest.CancellationPending == true)
                 {
                     button1.Text = "Start Now";
+                    toolStripStatusLabel1.Text = "Operation is Cancelled";
                     MessageBox.Show(this, "Operation is Cancelled", "Cancelled", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     break;
                 }
                 try
                 {
                     PingReply reply = myPing.Send(listView1.Items[i].Text, 2000);
+
+                    toolStripStatusLabel1.Text = "Testing : " + listView1.Items[i].Text;
 
                     if (reply != null)
                     {
@@ -193,11 +197,13 @@ namespace proxytester
                     listView1.Items[i].SubItems.Add("Machine Not Found");
                 }
             }
-            if(backgroundWorker1.CancellationPending == false)
+            if(bckTest.CancellationPending == false)
             {
                 button1.Text = "Start Now";
-                MessageBox.Show(this, "Operation Completed", "Completed", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                toolStripStatusLabel1.Text = "Operation is Completed";
+                MessageBox.Show(this, "Operation is Completed", "Completed", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+            EnableDisable(true);
         }
 
         private void deleteSelectedToolStripMenuItem_Click(object sender, EventArgs e)
@@ -212,14 +218,14 @@ namespace proxytester
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (backgroundWorker1.IsBusy == false && listView1.Items.Count != 0)
+            if (bckTest.IsBusy == false && listView1.Items.Count != 0)
             {
                 button1.Text = "Stop";
-                backgroundWorker1.RunWorkerAsync();
+                bckTest.RunWorkerAsync();
             }
             else
             {
-                backgroundWorker1.CancelAsync();
+                bckTest.CancelAsync();
             }
         }
 
@@ -244,6 +250,44 @@ namespace proxytester
             label1.Text = "= " + Convert.ToString(pingSuccess);
             label2.Text = "= " + Convert.ToString(pingError);
             label3.Text = "= " + Convert.ToString(pingWarning);
+        }
+
+        private void bckOpen_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {
+            EnableDisable(false);
+
+            pingSuccess = 0;
+            pingError = 0;
+            pingWarning = 0;
+            count = 0;
+
+            label1.Text = "= " + Convert.ToString(pingSuccess);
+            label2.Text = "= " + Convert.ToString(pingError);
+            label3.Text = "= " + Convert.ToString(pingWarning);
+
+            listView1.Items.Clear();
+
+            string[] array = File.ReadAllLines(SettingsClass.txtPath);
+
+            foreach (var item in array)
+            {
+                string itemString = item;
+                if (listView1.FindItemWithText(itemString) == null)
+                {
+                    if (itemString.Contains(":"))
+                    {
+                        itemString = itemString.Substring(0, itemString.LastIndexOf(":")).Trim();
+                    }
+                    toolStripStatusLabel1.Text = "Adding : " + itemString;
+                    ListViewItem listViewItem = new ListViewItem(itemString);
+                    listView1.Items.Add(listViewItem);
+                }
+            }
+            count = listView1.Items.Count;
+            label4.Text = "= " + Convert.ToString(count);
+
+            EnableDisable(true);
+            toolStripStatusLabel1.Text = "List Opened !";
         }
     }
 }
