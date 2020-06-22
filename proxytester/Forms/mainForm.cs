@@ -280,6 +280,11 @@ namespace proxytester
                         label1.Text = "= " + Convert.ToString(pingSuccess);
                         label2.Text = "= " + Convert.ToString(pingError);
                         label3.Text = "= " + Convert.ToString(pingWarning);
+
+                        if (checkBox1.CheckState == CheckState.Checked)
+                        {
+                            listView1.EnsureVisible(i);
+                        }
                     }
                 }
                 catch (PingException)
@@ -373,6 +378,11 @@ namespace proxytester
                     toolStripStatusLabel1.Text = "Adding : " + itemString;
                     ListViewItem listViewItem = new ListViewItem(itemString);
                     listView1.Items.Add(listViewItem);
+                }
+
+                if (checkBox1.CheckState == CheckState.Checked)
+                {
+                    listView1.EnsureVisible(listView1.Items.Count - 1);
                 }
             }
             count = listView1.Items.Count;
