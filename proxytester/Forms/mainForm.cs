@@ -1,5 +1,6 @@
 ﻿using proxytester.Properties;
 using System;
+using System.Collections;
 using System.IO;
 using System.Net.NetworkInformation;
 using System.Windows.Forms;
@@ -10,6 +11,97 @@ namespace proxytester
     {
         internal ListViewItem _listviewadd = new ListViewItem();
         private readonly ImageList _imagelist1 = new ImageList();
+        private ColumnHeader _sortingColumn;
+
+        #region Listview Sırala
+
+        // Compares two ListView items based on a selected column.
+        private class ListViewComparer : IComparer
+        {
+            // ReSharper disable once FieldCanBeMadeReadOnly.Local
+            private int _columnNumber;
+            // ReSharper disable once FieldCanBeMadeReadOnly.Local
+            private SortOrder _sortOrder;
+
+            public ListViewComparer(int columnNumber,
+                SortOrder sortOrder)
+            {
+                _columnNumber = columnNumber;
+                _sortOrder = sortOrder;
+            }
+
+            // Compare two ListViewItems.
+            public int Compare(object objectX, object objectY)
+            {
+                // Get the objects as ListViewItems.
+                ListViewItem itemX = objectX as ListViewItem;
+                ListViewItem itemY = objectY as ListViewItem;
+
+                // Get the corresponding sub-item values.
+                string stringX;
+                // ReSharper disable once PossibleNullReferenceException
+                // ReSharper disable once ConvertIfStatementToConditionalTernaryExpression
+                if (itemX.SubItems.Count <= _columnNumber)
+                {
+                    stringX = "";
+                }
+                else
+                {
+                    stringX = itemX.SubItems[_columnNumber].Text;
+                }
+
+                string stringY;
+                // ReSharper disable once PossibleNullReferenceException
+                // ReSharper disable once ConvertIfStatementToConditionalTernaryExpression
+                if (itemY.SubItems.Count <= _columnNumber)
+                {
+                    stringY = "";
+                }
+                else
+                {
+                    stringY = itemY.SubItems[_columnNumber].Text;
+                }
+
+                // Compare them.
+                int result;
+                double doubleX, doubleY;
+                if (double.TryParse(stringX, out doubleX) &&
+                    double.TryParse(stringY, out doubleY))
+                {
+                    // Treat as a number.
+                    result = doubleX.CompareTo(doubleY);
+                }
+                else
+                {
+                    DateTime dateX, dateY;
+                    if (DateTime.TryParse(stringX, out dateX) &&
+                        DateTime.TryParse(stringY, out dateY))
+                    {
+                        // Treat as a date.
+                        result = dateX.CompareTo(dateY);
+                    }
+                    else
+                    {
+                        // Treat as a string.
+                        // ReSharper disable once StringCompareToIsCultureSpecific
+                        result = stringX.CompareTo(stringY);
+                    }
+                }
+
+                // Return the correct result depending on whether
+                // we're sorting ascending or descending.
+                if (_sortOrder == SortOrder.Ascending)
+                {
+                    return result;
+                }
+                else
+                {
+                    return -result;
+                }
+            }
+        }
+
+        #endregion
 
         int pingSuccess;
         int pingError;
@@ -288,6 +380,71 @@ namespace proxytester
 
             EnableDisable(true);
             toolStripStatusLabel1.Text = "List Opened !";
+        }
+
+        private void listView1_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            if(bckTest.IsBusy != true && bckOpen.IsBusy != true)
+            {
+                // Get the new sorting column.
+                ColumnHeader newSortingColumn = listView1.Columns[e.Column];
+
+                // Figure out the new sorting order.
+                SortOrder sortOrder;
+                if (_sortingColumn == null)
+                {
+                    // New column. Sort ascending.
+                    sortOrder = SortOrder.Ascending;
+                }
+                else
+                {
+                    // See if this is the same column.
+                    if (newSortingColumn == _sortingColumn)
+                    {
+                        // Same column. Switch the sort order.
+                        // ReSharper disable once ConvertIfStatementToConditionalTernaryExpression
+                        if (_sortingColumn.Text.StartsWith("> "))
+                        {
+                            sortOrder = SortOrder.Descending;
+                        }
+                        else
+                        {
+                            sortOrder = SortOrder.Ascending;
+                        }
+                    }
+                    else
+                    {
+                        // New column. Sort ascending.
+                        sortOrder = SortOrder.Ascending;
+                    }
+
+                    // Remove the old sort indicator.
+                    _sortingColumn.Text = _sortingColumn.Text.Substring(2);
+                }
+
+                // Display the new sort order.
+                _sortingColumn = newSortingColumn;
+                if (sortOrder == SortOrder.Ascending)
+                {
+                    _sortingColumn.Text = @"> " + _sortingColumn.Text;
+                }
+                else
+                {
+                    _sortingColumn.Text = @"< " + _sortingColumn.Text;
+                }
+
+                // Create a comparer.
+                listView1.ListViewItemSorter =
+                    new ListViewComparer(e.Column, sortOrder);
+
+                // Sort.
+                listView1.Sort();
+            }
+            else
+            {
+                MessageBox.Show(this, "Wait for the current transaction to finish !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
     }
 }

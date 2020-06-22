@@ -1,2 +1,1 @@
-listview a dan z ye sıralama eklenecek
 otomatik kaydırma eklenecek
