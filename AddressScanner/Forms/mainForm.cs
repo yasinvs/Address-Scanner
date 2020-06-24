@@ -5,6 +5,7 @@ using System.Collections;
 using System.IO;
 using System.Net.NetworkInformation;
 using System.Windows.Forms;
+using AddressScanner.Forms;
 
 namespace AddressScanner
 {
@@ -171,7 +172,7 @@ namespace AddressScanner
             listView1.View = View.Details;
             #endregion
 
-            AutoUpdater.Start("http://rbsoft.org/updates/AutoUpdaterTest.xml");
+            AutoUpdater.Start("https://raw.githubusercontent.com/yasinvs/Address-Scanner/master/AddressScanner/_/version.xml");
         }
 
         private void backgroundWorker1_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
@@ -460,6 +461,13 @@ namespace AddressScanner
                 MessageBox.Show(this, "Wait for the current transaction to finish !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            aboutForm about = new aboutForm();
+
+            about.ShowDialog();
         }
     }
 }
