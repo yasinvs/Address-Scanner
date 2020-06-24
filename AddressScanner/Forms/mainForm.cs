@@ -1,4 +1,5 @@
-﻿using AddressScanner.Properties;
+﻿using AutoUpdaterDotNET;
+using AddressScanner.Properties;
 using System;
 using System.Collections;
 using System.IO;
@@ -169,6 +170,8 @@ namespace AddressScanner
             listView1.SmallImageList = _imagelist1;
             listView1.View = View.Details;
             #endregion
+
+            AutoUpdater.Start("http://rbsoft.org/updates/AutoUpdaterTest.xml");
         }
 
         private void backgroundWorker1_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)

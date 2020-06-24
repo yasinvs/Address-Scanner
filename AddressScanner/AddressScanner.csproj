@@ -36,6 +36,9 @@
     <ApplicationIcon>Resources\Icojam-Blue-Bits-Globe-search.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoUpdater.NET, Version=1.6.0.0, Culture=neutral, PublicKeyToken=501435c91b35f4bc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autoupdater.NET.Official.1.6.0\lib\net40\AutoUpdater.NET.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -81,6 +84,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="bin\Debug\Address-Scanner.exe.config" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -113,6 +117,7 @@
     <None Include="Resources\math-add-icon.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="_\version.xml" />
     <None Include="Resources\database-search-icon.png" />
     <None Include="Resources\Icojam-Blue-Bits-Database.ico" />
     <None Include="Resources\Icojam-Blue-Bits-Database-search.ico" />
@@ -120,7 +125,6 @@
     <None Include="Resources\Icojam-Blue-Bits-Globe-search.ico" />
     <Content Include="bin\Debug\Address-Scanner.exe" />
     <Content Include="bin\Debug\Address-Scanner.pdb" />
-    <Content Include="TextFile1.txt" />
     <Content Include="_YAPILACAKLAR_.txt" />
     <Content Include="_\Proxy List.txt" />
     <Content Include="_\sfsfsf.txt" />
