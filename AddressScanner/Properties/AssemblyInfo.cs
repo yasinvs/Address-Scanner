@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("proxytester")]
+[assembly: AssemblyTitle("Address Scanner")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("proxytester")]
-[assembly: AssemblyCopyright("Copyright ©  2020")]
+[assembly: AssemblyProduct("Address Scanner")]
+[assembly: AssemblyCopyright("Copyright © 2020 yasinvs")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

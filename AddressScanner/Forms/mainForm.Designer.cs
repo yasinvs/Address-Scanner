@@ -1,4 +1,4 @@
-﻿namespace proxytester
+﻿namespace AddressScanner
 {
     partial class Form1
     {
@@ -53,9 +53,9 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.bckTest = new System.ComponentModel.BackgroundWorker();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.button1 = new System.Windows.Forms.Button();
             this.bckOpen = new System.ComponentModel.BackgroundWorker();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -88,7 +88,7 @@
             // 
             // openToolStripMenuItem
             // 
-            this.openToolStripMenuItem.Image = global::proxytester.Properties.Resources.database_icon;
+            this.openToolStripMenuItem.Image = global::AddressScanner.Properties.Resources.database_icon;
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
             this.openToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.openToolStripMenuItem.Text = "Open &List";
@@ -105,7 +105,7 @@
             // 
             // deleteSelectedToolStripMenuItem
             // 
-            this.deleteSelectedToolStripMenuItem.Image = global::proxytester.Properties.Resources.symbol_delete_icon;
+            this.deleteSelectedToolStripMenuItem.Image = global::AddressScanner.Properties.Resources.symbol_delete_icon;
             this.deleteSelectedToolStripMenuItem.Name = "deleteSelectedToolStripMenuItem";
             this.deleteSelectedToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
             this.deleteSelectedToolStripMenuItem.Text = "Delete Selected";
@@ -201,7 +201,7 @@
             // pictureBox4
             // 
             this.pictureBox4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pictureBox4.Image = global::proxytester.Properties.Resources.database_icon;
+            this.pictureBox4.Image = global::AddressScanner.Properties.Resources.database_icon;
             this.pictureBox4.Location = new System.Drawing.Point(293, 0);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(24, 38);
@@ -230,7 +230,7 @@
             // 
             // pictureBox3
             // 
-            this.pictureBox3.Image = global::proxytester.Properties.Resources.warning_icon;
+            this.pictureBox3.Image = global::AddressScanner.Properties.Resources.warning_icon;
             this.pictureBox3.Location = new System.Drawing.Point(150, 7);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(24, 24);
@@ -249,7 +249,7 @@
             // 
             // pictureBox2
             // 
-            this.pictureBox2.Image = global::proxytester.Properties.Resources.symbol_delete_icon;
+            this.pictureBox2.Image = global::AddressScanner.Properties.Resources.symbol_delete_icon;
             this.pictureBox2.Location = new System.Drawing.Point(80, 7);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(24, 24);
@@ -268,7 +268,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::proxytester.Properties.Resources.symbol_check_icon;
+            this.pictureBox1.Image = global::AddressScanner.Properties.Resources.symbol_check_icon;
             this.pictureBox1.Location = new System.Drawing.Point(12, 7);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(24, 24);
@@ -291,6 +291,17 @@
             this.panel2.Size = new System.Drawing.Size(375, 33);
             this.panel2.TabIndex = 4;
             // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.checkBox1.Location = new System.Drawing.Point(0, 0);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(77, 33);
+            this.checkBox1.TabIndex = 1;
+            this.checkBox1.Text = "Auto Scroll";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
             // button1
             // 
             this.button1.Dock = System.Windows.Forms.DockStyle.Right;
@@ -308,17 +319,6 @@
             // 
             this.bckOpen.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bckOpen_DoWork);
             // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.checkBox1.Location = new System.Drawing.Point(0, 0);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(77, 33);
-            this.checkBox1.TabIndex = 1;
-            this.checkBox1.Text = "Auto Scroll";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -331,6 +331,7 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Address Scanner";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);

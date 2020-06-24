@@ -1,4 +1,4 @@
-﻿namespace proxytester
+﻿namespace AddressScanner
 {
     class SettingsClass
     {

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace proxytester.Properties {
+namespace AddressScanner.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace proxytester.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("proxytester.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AddressScanner.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -67,6 +67,56 @@ namespace proxytester.Properties {
             get {
                 object obj = ResourceManager.GetObject("database-icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap database_search_icon {
+            get {
+                object obj = ResourceManager.GetObject("database_search_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap globe_search_icon {
+            get {
+                object obj = ResourceManager.GetObject("globe_search_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon Icojam_Blue_Bits_Database {
+            get {
+                object obj = ResourceManager.GetObject("Icojam_Blue_Bits_Database", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon Icojam_Blue_Bits_Database_search {
+            get {
+                object obj = ResourceManager.GetObject("Icojam_Blue_Bits_Database_search", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon Icojam_Blue_Bits_Globe_search {
+            get {
+                object obj = ResourceManager.GetObject("Icojam_Blue_Bits_Globe_search", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
             }
         }
         

@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30204.135
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "proxytester", "proxytester\proxytester.csproj", "{CF9BB7A8-FBE0-4B13-9243-1E5301F6D387}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AddressScanner", "AddressScanner\AddressScanner.csproj", "{CF9BB7A8-FBE0-4B13-9243-1E5301F6D387}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

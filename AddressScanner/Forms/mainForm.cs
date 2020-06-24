@@ -1,11 +1,11 @@
-﻿using proxytester.Properties;
+﻿using AddressScanner.Properties;
 using System;
 using System.Collections;
 using System.IO;
 using System.Net.NetworkInformation;
 using System.Windows.Forms;
 
-namespace proxytester
+namespace AddressScanner
 {
     public partial class Form1 : Form
     {
@@ -159,6 +159,8 @@ namespace proxytester
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            Icon = Resources.Icojam_Blue_Bits_Globe_search;
+
             #region ImageList
             _imagelist1.Images.Add("ok", Resources.symbol_check_icon);
             _imagelist1.Images.Add("error", Resources.symbol_delete_icon);

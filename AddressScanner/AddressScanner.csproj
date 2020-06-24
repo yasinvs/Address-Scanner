@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{CF9BB7A8-FBE0-4B13-9243-1E5301F6D387}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>proxytester</RootNamespace>
-    <AssemblyName>proxytester</AssemblyName>
+    <RootNamespace>AddressScanner</RootNamespace>
+    <AssemblyName>Address-Scanner</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -31,6 +31,9 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\Icojam-Blue-Bits-Globe-search.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -100,7 +103,14 @@
     <None Include="Resources\math-add-icon.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\database-search-icon.png" />
+    <None Include="Resources\Icojam-Blue-Bits-Database.ico" />
+    <None Include="Resources\Icojam-Blue-Bits-Database-search.ico" />
+    <None Include="Resources\globe-search-icon.png" />
+    <None Include="Resources\Icojam-Blue-Bits-Globe-search.ico" />
     <Content Include="_YAPILACAKLAR_.txt" />
+    <Content Include="_\Proxy List.txt" />
+    <Content Include="_\sfsfsf.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
