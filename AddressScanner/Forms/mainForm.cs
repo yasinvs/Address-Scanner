@@ -1,11 +1,11 @@
-﻿using AutoUpdaterDotNET;
+﻿using AddressScanner.Forms;
 using AddressScanner.Properties;
+using AutoUpdaterDotNET;
 using System;
 using System.Collections;
 using System.IO;
 using System.Net.NetworkInformation;
 using System.Windows.Forms;
-using AddressScanner.Forms;
 
 namespace AddressScanner
 {
@@ -22,6 +22,7 @@ namespace AddressScanner
         {
             // ReSharper disable once FieldCanBeMadeReadOnly.Local
             private int _columnNumber;
+
             // ReSharper disable once FieldCanBeMadeReadOnly.Local
             private SortOrder _sortOrder;
 
@@ -103,12 +104,12 @@ namespace AddressScanner
             }
         }
 
-        #endregion
+        #endregion Listview Sırala
 
-        int pingSuccess;
-        int pingError;
-        int pingWarning;
-        int count;
+        private int pingSuccess;
+        private int pingError;
+        private int pingWarning;
+        private int count;
 
         internal void EnableDisable(bool value)
         {
@@ -120,6 +121,7 @@ namespace AddressScanner
                     aboutToolStripMenuItem.Enabled = true;
                     button1.Enabled = true;
                     break;
+
                 case false:
                     fileToolStripMenuItem.Enabled = false;
                     listToolStripMenuItem.Enabled = false;
@@ -137,7 +139,7 @@ namespace AddressScanner
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if(fileToolStripMenuItem.Enabled == true)
+            if (fileToolStripMenuItem.Enabled == true)
             {
                 OpenFileDialog openFileDialog = new OpenFileDialog()
                 {
@@ -167,13 +169,15 @@ namespace AddressScanner
             Icon = Resources.Icojam_Blue_Bits_Globe_search;
 
             #region ImageList
+
             _imagelist1.Images.Add("ok", Resources.symbol_check_icon);
             _imagelist1.Images.Add("error", Resources.symbol_delete_icon);
             _imagelist1.Images.Add("warning", Resources.warning_icon);
 
             listView1.SmallImageList = _imagelist1;
             listView1.View = View.Details;
-            #endregion
+
+            #endregion ImageList
 
             AutoUpdater.Start("https://raw.githubusercontent.com/yasinvs/Address-Scanner/master/AddressScanner/_/version.xml");
         }
@@ -191,7 +195,7 @@ namespace AddressScanner
 
             for (int i = 0; i < listView1.Items.Count; i++)
             {
-                if(bckTest.CancellationPending == true)
+                if (bckTest.CancellationPending == true)
                 {
                     button1.Text = "Start Now";
                     toolStripStatusLabel1.Text = "Operation is Cancelled";
@@ -224,64 +228,86 @@ namespace AddressScanner
                                 pingSuccess++;
                                 listView1.Items[i].ImageIndex = 0;
                                 break;
+
                             case IPStatus.DestinationNetworkUnreachable:
                                 pingError++;
                                 listView1.Items[i].ImageIndex = 1;
                                 break;
+
                             case IPStatus.DestinationHostUnreachable:
                                 pingError++;
                                 listView1.Items[i].ImageIndex = 1;
                                 break;
+
                             case IPStatus.DestinationProtocolUnreachable:
                                 pingError++;
                                 listView1.Items[i].ImageIndex = 1;
                                 break;
+
                             case IPStatus.DestinationPortUnreachable:
                                 pingError++;
                                 listView1.Items[i].ImageIndex = 1;
                                 break;
+
                             case IPStatus.NoResources:
                                 break;
+
                             case IPStatus.BadOption:
                                 break;
+
                             case IPStatus.HardwareError:
                                 pingError++;
                                 listView1.Items[i].ImageIndex = 1;
                                 break;
+
                             case IPStatus.PacketTooBig:
                                 break;
+
                             case IPStatus.TimedOut:
                                 pingWarning++;
                                 listView1.Items[i].ImageIndex = 2;
                                 break;
+
                             case IPStatus.BadRoute:
                                 break;
+
                             case IPStatus.TtlExpired:
                                 break;
+
                             case IPStatus.TtlReassemblyTimeExceeded:
                                 break;
+
                             case IPStatus.ParameterProblem:
                                 break;
+
                             case IPStatus.SourceQuench:
                                 break;
+
                             case IPStatus.BadDestination:
                                 pingError++;
                                 listView1.Items[i].ImageIndex = 1;
                                 break;
+
                             case IPStatus.DestinationUnreachable:
                                 pingError++;
                                 listView1.Items[i].ImageIndex = 1;
                                 break;
+
                             case IPStatus.TimeExceeded:
                                 break;
+
                             case IPStatus.BadHeader:
                                 break;
+
                             case IPStatus.UnrecognizedNextHeader:
                                 break;
+
                             case IPStatus.IcmpError:
                                 break;
+
                             case IPStatus.DestinationScopeMismatch:
                                 break;
+
                             case IPStatus.Unknown:
                                 break;
                         }
@@ -303,7 +329,7 @@ namespace AddressScanner
                     listView1.Items[i].SubItems.Add("Machine Not Found");
                 }
             }
-            if(bckTest.CancellationPending == false)
+            if (bckTest.CancellationPending == false)
             {
                 button1.Text = "Start Now";
                 toolStripStatusLabel1.Text = "Operation is Completed";
@@ -314,7 +340,7 @@ namespace AddressScanner
 
         private void deleteSelectedToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if(listToolStripMenuItem.Enabled == true)
+            if (listToolStripMenuItem.Enabled == true)
             {
                 DialogResult dialogResult = MessageBox.Show(this, "Are you sure?", "Delete Selected", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dialogResult == DialogResult.Yes)
@@ -334,7 +360,7 @@ namespace AddressScanner
         start:
             if (bckTest.IsBusy == false && listView1.Items.Count != 0)
             {
-                if(SettingsClass.count == 0)
+                if (SettingsClass.count == 0)
                 {
                     SettingsClass.count++;
                     button1.Text = "Stop";
@@ -344,7 +370,7 @@ namespace AddressScanner
                 {
                     SettingsClass.count = 0;
                     DialogResult dialogResult = MessageBox.Show(this, "Delete previous information?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if(dialogResult == DialogResult.Yes)
+                    if (dialogResult == DialogResult.Yes)
                     {
                         clearToolStripMenuItem_Click(sender, e);
                         goto start;
@@ -354,7 +380,6 @@ namespace AddressScanner
                         goto start;
                     }
                 }
-
             }
             else
             {
@@ -438,7 +463,7 @@ namespace AddressScanner
 
         private void listView1_ColumnClick(object sender, ColumnClickEventArgs e)
         {
-            if(bckTest.IsBusy != true && bckOpen.IsBusy != true)
+            if (bckTest.IsBusy != true && bckOpen.IsBusy != true)
             {
                 // Get the new sorting column.
                 ColumnHeader newSortingColumn = listView1.Columns[e.Column];
@@ -498,7 +523,6 @@ namespace AddressScanner
             {
                 MessageBox.Show(this, "Wait for the current transaction to finish !", "Please Wait !", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
         }
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
