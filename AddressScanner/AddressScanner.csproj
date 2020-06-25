@@ -125,7 +125,7 @@
     <None Include="Resources\Icojam-Blue-Bits-Globe-search.ico" />
     <Content Include="bin\Debug\Address-Scanner.exe" />
     <Content Include="bin\Debug\Address-Scanner.pdb" />
-    <Content Include="_YAPILACAKLAR_.txt" />
+    <Content Include="_\_YAPILACAKLAR_.txt" />
     <Content Include="_\Proxy List.txt" />
     <Content Include="_\sfsfsf.txt" />
   </ItemGroup>

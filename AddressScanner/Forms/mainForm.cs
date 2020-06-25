@@ -137,24 +137,27 @@ namespace AddressScanner
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog()
+            if(fileToolStripMenuItem.Enabled == true)
             {
-                Filter = "Text File|*.txt",
-                Title = "Text File Open",
-            };
-
-            DialogResult dialogResult = openFileDialog.ShowDialog();
-
-            if (dialogResult == DialogResult.OK)
-            {
-                SettingsClass.txtPath = openFileDialog.FileName;
-                if(bckTest.IsBusy != true && bckOpen.IsBusy != true)
+                OpenFileDialog openFileDialog = new OpenFileDialog()
                 {
-                    bckOpen.RunWorkerAsync();
-                }
-                else
+                    Filter = "Text File|*.txt",
+                    Title = "Text File Open",
+                };
+
+                DialogResult dialogResult = openFileDialog.ShowDialog();
+
+                if (dialogResult == DialogResult.OK)
                 {
-                    MessageBox.Show(this, "Wait for the current transaction to finish !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    SettingsClass.txtPath = openFileDialog.FileName;
+                    if (bckTest.IsBusy != true && bckOpen.IsBusy != true)
+                    {
+                        bckOpen.RunWorkerAsync();
+                    }
+                    else
+                    {
+                        MessageBox.Show(this, "Wait for the current transaction to finish !", "Please Wait !", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
         }
@@ -311,20 +314,47 @@ namespace AddressScanner
 
         private void deleteSelectedToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < listView1.SelectedItems.Count; i++)
+            if(listToolStripMenuItem.Enabled == true)
             {
-                listView1.SelectedItems[i].Remove();
-                count--;
-                label4.Text = "= " + listView1.Items.Count;
+                DialogResult dialogResult = MessageBox.Show(this, "Are you sure?", "Delete Selected", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    for (int i = 0; i < listView1.SelectedItems.Count; i++)
+                    {
+                        listView1.SelectedItems[i].Remove();
+                        count--;
+                        label4.Text = "= " + listView1.Items.Count;
+                    }
+                }
             }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+        start:
             if (bckTest.IsBusy == false && listView1.Items.Count != 0)
             {
-                button1.Text = "Stop";
-                bckTest.RunWorkerAsync();
+                if(SettingsClass.count == 0)
+                {
+                    SettingsClass.count++;
+                    button1.Text = "Stop";
+                    bckTest.RunWorkerAsync();
+                }
+                else
+                {
+                    SettingsClass.count = 0;
+                    DialogResult dialogResult = MessageBox.Show(this, "Delete previous information?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if(dialogResult == DialogResult.Yes)
+                    {
+                        clearToolStripMenuItem_Click(sender, e);
+                        goto start;
+                    }
+                    else
+                    {
+                        goto start;
+                    }
+                }
+
             }
             else
             {
@@ -334,25 +364,33 @@ namespace AddressScanner
 
         private void clearToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < listView1.Items.Count; i++)
+            if (listToolStripMenuItem.Enabled == true)
             {
-                for (int i2 = 0; i2 < listView1.Items[i].SubItems.Count; i2++)
+                SettingsClass.count = 0;
+                DialogResult dialogResult = MessageBox.Show(this, "Are you sure?", "Clear (Name Exclude)", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dialogResult == DialogResult.Yes)
                 {
-                    if(i2 != 0)
+                    for (int i = 0; i < listView1.Items.Count; i++)
                     {
-                        listView1.Items[i].SubItems[i2].Text = "";
-                        listView1.Items[i].ImageIndex = -1;
+                        for (int i2 = 0; i2 < listView1.Items[i].SubItems.Count; i2++)
+                        {
+                            if (i2 != 0)
+                            {
+                                listView1.Items[i].SubItems[i2].Text = "";
+                                listView1.Items[i].ImageIndex = -1;
+                            }
+                        }
                     }
                 }
+
+                pingSuccess = 0;
+                pingError = 0;
+                pingWarning = 0;
+
+                label1.Text = "= " + Convert.ToString(pingSuccess);
+                label2.Text = "= " + Convert.ToString(pingError);
+                label3.Text = "= " + Convert.ToString(pingWarning);
             }
-
-            pingSuccess = 0;
-            pingError = 0;
-            pingWarning = 0;
-
-            label1.Text = "= " + Convert.ToString(pingSuccess);
-            label2.Text = "= " + Convert.ToString(pingError);
-            label3.Text = "= " + Convert.ToString(pingWarning);
         }
 
         private void bckOpen_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
@@ -458,7 +496,7 @@ namespace AddressScanner
             }
             else
             {
-                MessageBox.Show(this, "Wait for the current transaction to finish !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(this, "Wait for the current transaction to finish !", "Please Wait !", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }

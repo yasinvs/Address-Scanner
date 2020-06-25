@@ -1,0 +1,6 @@
+
+
+1.1.0.0
+(+) Delete previous information? ADDED
+(+) Clear (Name Exclude) QUESTION ADDED
+(+) Hotkey ADDED
