@@ -1,15 +1,15 @@
-﻿using AddressScanner.Forms;
-using AddressScanner.Properties;
+﻿using AddressScanner.Properties;
 using AutoUpdaterDotNET;
+using MadMilkman.Ini;
 using System;
 using System.Collections;
 using System.IO;
 using System.Net.NetworkInformation;
 using System.Windows.Forms;
 
-namespace AddressScanner
+namespace AddressScanner.Forms
 {
-    public partial class Form1 : Form
+    public partial class mainForm : Form
     {
         internal ListViewItem _listviewadd = new ListViewItem();
         private readonly ImageList _imagelist1 = new ImageList();
@@ -20,10 +20,8 @@ namespace AddressScanner
         // Compares two ListView items based on a selected column.
         private class ListViewComparer : IComparer
         {
-            // ReSharper disable once FieldCanBeMadeReadOnly.Local
             private int _columnNumber;
 
-            // ReSharper disable once FieldCanBeMadeReadOnly.Local
             private SortOrder _sortOrder;
 
             public ListViewComparer(int columnNumber,
@@ -42,8 +40,6 @@ namespace AddressScanner
 
                 // Get the corresponding sub-item values.
                 string stringX;
-                // ReSharper disable once PossibleNullReferenceException
-                // ReSharper disable once ConvertIfStatementToConditionalTernaryExpression
                 if (itemX.SubItems.Count <= _columnNumber)
                 {
                     stringX = "";
@@ -54,8 +50,6 @@ namespace AddressScanner
                 }
 
                 string stringY;
-                // ReSharper disable once PossibleNullReferenceException
-                // ReSharper disable once ConvertIfStatementToConditionalTernaryExpression
                 if (itemY.SubItems.Count <= _columnNumber)
                 {
                     stringY = "";
@@ -86,7 +80,6 @@ namespace AddressScanner
                     else
                     {
                         // Treat as a string.
-                        // ReSharper disable once StringCompareToIsCultureSpecific
                         result = stringX.CompareTo(stringY);
                     }
                 }
@@ -118,20 +111,20 @@ namespace AddressScanner
                 case true:
                     fileToolStripMenuItem.Enabled = true;
                     listToolStripMenuItem.Enabled = true;
-                    aboutToolStripMenuItem.Enabled = true;
-                    button1.Enabled = true;
+                    applicationToolStripMenuItem.Enabled = true;
+                    btnStartNow.Enabled = true;
                     break;
 
                 case false:
                     fileToolStripMenuItem.Enabled = false;
                     listToolStripMenuItem.Enabled = false;
-                    aboutToolStripMenuItem.Enabled = false;
-                    button1.Enabled = false;
+                    applicationToolStripMenuItem.Enabled = false;
+                    btnStartNow.Enabled = false;
                     break;
             }
         }
 
-        public Form1()
+        public mainForm()
         {
             InitializeComponent();
             CheckForIllegalCrossThreadCalls = false;
@@ -144,7 +137,7 @@ namespace AddressScanner
                 OpenFileDialog openFileDialog = new OpenFileDialog()
                 {
                     Filter = "Text File|*.txt",
-                    Title = "Text File Open",
+                    Title = "Open List - Address Scanner " + Application.ProductVersion,
                 };
 
                 DialogResult dialogResult = openFileDialog.ShowDialog();
@@ -166,6 +159,7 @@ namespace AddressScanner
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            Text = "Address Scanner " + Application.ProductVersion;
             Icon = Resources.Icojam_Blue_Bits_Globe_search;
 
             #region ImageList
@@ -179,7 +173,33 @@ namespace AddressScanner
 
             #endregion ImageList
 
-            AutoUpdater.Start("https://raw.githubusercontent.com/yasinvs/Address-Scanner/master/AddressScanner/_/version.xml");
+            #region Settings
+
+            if (!File.Exists(Application.StartupPath + "\\settings.ini"))
+            {
+                IniSection sectionSettings = SettingsClass.iniFile.Sections.Add("Settings");
+                IniSection sectionApplication = SettingsClass.iniFile.Sections.Add("Application");
+                IniKey key;
+
+                key = sectionSettings.Keys.Add("TimeOut", "2000");
+                key = sectionSettings.Keys.Add("DefaultAutoScroll", "false");
+                key = sectionApplication.Keys.Add("AutoUpdate", "true");
+
+                SettingsClass.iniFile.Save(Application.StartupPath + "\\settings.ini");
+            }
+
+            SettingsClass.iniFile.Load(Application.StartupPath + "\\settings.ini");
+
+            SettingsClass.timeout = Convert.ToInt32(SettingsClass.iniFile.Sections[0].Keys[0].Value);
+            cbAutoScroll.Checked = Convert.ToBoolean(SettingsClass.iniFile.Sections[0].Keys[1].Value);
+            SettingsClass.autoupdate = Convert.ToBoolean(SettingsClass.iniFile.Sections[1].Keys[0].Value);
+
+            #endregion Settings
+
+            if (SettingsClass.autoupdate == true)
+            {
+                AutoUpdater.Start("https://raw.githubusercontent.com/yasinvs/Address-Scanner/master/AddressScanner/_/version.xml");
+            }
         }
 
         private void backgroundWorker1_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
@@ -191,13 +211,13 @@ namespace AddressScanner
             pingWarning = 0;
 
             EnableDisable(false);
-            button1.Enabled = true;
+            btnStartNow.Enabled = true;
 
             for (int i = 0; i < listView1.Items.Count; i++)
             {
                 if (bckTest.CancellationPending == true)
                 {
-                    button1.Text = "Start Now";
+                    btnStartNow.Text = "Start Now";
                     toolStripStatusLabel1.Text = "Operation is Cancelled";
                     MessageBox.Show(this, "Operation is Cancelled", "Cancelled", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     break;
@@ -316,7 +336,7 @@ namespace AddressScanner
                         label2.Text = "= " + Convert.ToString(pingError);
                         label3.Text = "= " + Convert.ToString(pingWarning);
 
-                        if (checkBox1.CheckState == CheckState.Checked)
+                        if (cbAutoScroll.CheckState == CheckState.Checked)
                         {
                             listView1.EnsureVisible(i);
                         }
@@ -331,7 +351,7 @@ namespace AddressScanner
             }
             if (bckTest.CancellationPending == false)
             {
-                button1.Text = "Start Now";
+                btnStartNow.Text = "Start Now";
                 toolStripStatusLabel1.Text = "Operation is Completed";
                 MessageBox.Show(this, "Operation is Completed", "Completed", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -363,7 +383,7 @@ namespace AddressScanner
                 if (SettingsClass.count == 0)
                 {
                     SettingsClass.count++;
-                    button1.Text = "Stop";
+                    btnStartNow.Text = "Stop";
                     bckTest.RunWorkerAsync();
                 }
                 else
@@ -421,7 +441,6 @@ namespace AddressScanner
         private void bckOpen_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
             EnableDisable(false);
-
             pingSuccess = 0;
             pingError = 0;
             pingWarning = 0;
@@ -437,6 +456,10 @@ namespace AddressScanner
 
             foreach (var item in array)
             {
+                if (bckTest.CancellationPending == true)
+                {
+                    break;
+                }
                 string itemString = item;
                 if (listView1.FindItemWithText(itemString) == null)
                 {
@@ -449,14 +472,14 @@ namespace AddressScanner
                     listView1.Items.Add(listViewItem);
                 }
 
-                if (checkBox1.CheckState == CheckState.Checked)
+                count = listView1.Items.Count;
+                label4.Text = "= " + Convert.ToString(count);
+
+                if (cbAutoScroll.CheckState == CheckState.Checked)
                 {
                     listView1.EnsureVisible(listView1.Items.Count - 1);
                 }
             }
-            count = listView1.Items.Count;
-            label4.Text = "= " + Convert.ToString(count);
-
             EnableDisable(true);
             toolStripStatusLabel1.Text = "List Opened !";
         }
@@ -526,6 +549,24 @@ namespace AddressScanner
         }
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            bckOpen.CancelAsync();
+            bckTest.CancelAsync();
+        }
+
+        private void settingsToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            settingsForm settings = new settingsForm();
+
+            settings.ShowDialog();
+        }
+
+        private void aboutToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             aboutForm about = new aboutForm();
 

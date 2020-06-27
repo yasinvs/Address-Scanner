@@ -13,6 +13,8 @@ namespace AddressScanner.Forms
 
         private void aboutForm_Load(object sender, EventArgs e)
         {
+            Text = "About - Address Scanner " + Application.ProductVersion;
+            label3.Text = "Version : " + Application.ProductVersion;
         }
 
         private void button1_Click(object sender, EventArgs e)

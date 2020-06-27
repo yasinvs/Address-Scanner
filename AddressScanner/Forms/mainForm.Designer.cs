@@ -1,6 +1,6 @@
-﻿namespace AddressScanner
+﻿namespace AddressScanner.Forms
 {
-    partial class Form1
+    partial class mainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -34,7 +34,7 @@
             this.listToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteSelectedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clearToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.applicationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -53,9 +53,12 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.bckTest = new System.ComponentModel.BackgroundWorker();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.cbAutoScroll = new System.Windows.Forms.CheckBox();
+            this.btnStartNow = new System.Windows.Forms.Button();
             this.bckOpen = new System.ComponentModel.BackgroundWorker();
+            this.settingsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -71,7 +74,7 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.listToolStripMenuItem,
-            this.aboutToolStripMenuItem});
+            this.applicationToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(375, 24);
@@ -91,7 +94,7 @@
             this.openToolStripMenuItem.Image = global::AddressScanner.Properties.Resources.database_icon;
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
             this.openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
             this.openToolStripMenuItem.Text = "Open &List";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
@@ -100,6 +103,7 @@
             this.listToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.deleteSelectedToolStripMenuItem,
             this.clearToolStripMenuItem});
+            this.listToolStripMenuItem.Enabled = false;
             this.listToolStripMenuItem.Name = "listToolStripMenuItem";
             this.listToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.listToolStripMenuItem.Text = "List";
@@ -121,14 +125,19 @@
             this.clearToolStripMenuItem.Text = "Clear (Name Exclude)";
             this.clearToolStripMenuItem.Click += new System.EventHandler(this.clearToolStripMenuItem_Click);
             // 
-            // aboutToolStripMenuItem
+            // applicationToolStripMenuItem
             // 
-            this.aboutToolStripMenuItem.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.aboutToolStripMenuItem.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
-            this.aboutToolStripMenuItem.Text = "About";
-            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+            this.applicationToolStripMenuItem.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.applicationToolStripMenuItem.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.applicationToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.applicationToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.settingsToolStripMenuItem1,
+            this.toolStripSeparator1,
+            this.aboutToolStripMenuItem});
+            this.applicationToolStripMenuItem.Name = "applicationToolStripMenuItem";
+            this.applicationToolStripMenuItem.Size = new System.Drawing.Size(80, 20);
+            this.applicationToolStripMenuItem.Text = "Application";
+            this.applicationToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // listView1
             // 
@@ -287,43 +296,64 @@
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.checkBox1);
-            this.panel2.Controls.Add(this.button1);
+            this.panel2.Controls.Add(this.cbAutoScroll);
+            this.panel2.Controls.Add(this.btnStartNow);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel2.Location = new System.Drawing.Point(0, 376);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(375, 33);
             this.panel2.TabIndex = 4;
             // 
-            // checkBox1
+            // cbAutoScroll
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.checkBox1.Location = new System.Drawing.Point(0, 0);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(77, 33);
-            this.checkBox1.TabIndex = 1;
-            this.checkBox1.Text = "Auto Scroll";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.cbAutoScroll.AutoSize = true;
+            this.cbAutoScroll.Dock = System.Windows.Forms.DockStyle.Left;
+            this.cbAutoScroll.Location = new System.Drawing.Point(0, 0);
+            this.cbAutoScroll.Name = "cbAutoScroll";
+            this.cbAutoScroll.Size = new System.Drawing.Size(77, 33);
+            this.cbAutoScroll.TabIndex = 1;
+            this.cbAutoScroll.Text = "Auto Scroll";
+            this.cbAutoScroll.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // btnStartNow
             // 
-            this.button1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.button1.Enabled = false;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.button1.Location = new System.Drawing.Point(221, 0);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(154, 33);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Start Now";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnStartNow.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnStartNow.Enabled = false;
+            this.btnStartNow.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.btnStartNow.Location = new System.Drawing.Point(221, 0);
+            this.btnStartNow.Name = "btnStartNow";
+            this.btnStartNow.Size = new System.Drawing.Size(154, 33);
+            this.btnStartNow.TabIndex = 0;
+            this.btnStartNow.Text = "Start Now";
+            this.btnStartNow.UseVisualStyleBackColor = true;
+            this.btnStartNow.Click += new System.EventHandler(this.button1_Click);
             // 
             // bckOpen
             // 
+            this.bckOpen.WorkerReportsProgress = true;
+            this.bckOpen.WorkerSupportsCancellation = true;
             this.bckOpen.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bckOpen_DoWork);
             // 
-            // Form1
+            // settingsToolStripMenuItem1
+            // 
+            this.settingsToolStripMenuItem1.Name = "settingsToolStripMenuItem1";
+            this.settingsToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.settingsToolStripMenuItem1.Text = "Settings";
+            this.settingsToolStripMenuItem1.Click += new System.EventHandler(this.settingsToolStripMenuItem1_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.aboutToolStripMenuItem.Text = "About";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click_1);
+            // 
+            // mainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -334,9 +364,10 @@
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "Form1";
+            this.Name = "mainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Address Scanner";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -381,10 +412,13 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+        private System.Windows.Forms.Button btnStartNow;
+        private System.Windows.Forms.ToolStripMenuItem applicationToolStripMenuItem;
         private System.ComponentModel.BackgroundWorker bckOpen;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox cbAutoScroll;
+        private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
     }
 }
 
