@@ -4,6 +4,7 @@ using MadMilkman.Ini;
 using System;
 using System.Collections;
 using System.IO;
+using System.Linq;
 using System.Net.NetworkInformation;
 using System.Windows.Forms;
 
@@ -550,7 +551,6 @@ namespace AddressScanner.Forms
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -571,6 +571,42 @@ namespace AddressScanner.Forms
             aboutForm about = new aboutForm();
 
             about.ShowDialog();
+        }
+
+        private void exportToCSVToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //declare new SaveFileDialog + set it's initial properties
+            SaveFileDialog sfd = new SaveFileDialog
+            {
+                Title = "Choose file to save to",
+                Filter = "CSV (*.csv)|*.csv",
+            };
+
+            //show the dialog + display the results in a msgbox unless cancelled
+
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                string[] headers = listView1.Columns
+                           .OfType<ColumnHeader>()
+                           .Select(header => header.Text.Trim())
+                           .ToArray();
+
+                string[][] items = listView1.Items
+                            .OfType<ListViewItem>()
+                            .Select(lvi => lvi.SubItems
+                                .OfType<ListViewItem.ListViewSubItem>()
+                                .Select(si => si.Text).ToArray()).ToArray();
+
+                string table = string.Join(",", headers) + Environment.NewLine;
+                foreach (string[] a in items)
+                {
+                    //a = a_loopVariable;
+                    table += string.Join(",", a) + Environment.NewLine;
+                }
+                table = table.TrimEnd('\r', '\n');
+                File.WriteAllText(sfd.FileName, table);
+                MessageBox.Show(this, "Export completed !", "Export to CSV", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
     }
 }

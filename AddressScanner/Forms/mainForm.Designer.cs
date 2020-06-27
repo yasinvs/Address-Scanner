@@ -35,6 +35,9 @@
             this.deleteSelectedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clearToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.applicationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.settingsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -56,9 +59,8 @@
             this.cbAutoScroll = new System.Windows.Forms.CheckBox();
             this.btnStartNow = new System.Windows.Forms.Button();
             this.bckOpen = new System.ComponentModel.BackgroundWorker();
-            this.settingsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.exportToCSVToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -101,6 +103,8 @@
             // listToolStripMenuItem
             // 
             this.listToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.exportToCSVToolStripMenuItem,
+            this.toolStripSeparator2,
             this.deleteSelectedToolStripMenuItem,
             this.clearToolStripMenuItem});
             this.listToolStripMenuItem.Enabled = false;
@@ -138,6 +142,25 @@
             this.applicationToolStripMenuItem.Size = new System.Drawing.Size(80, 20);
             this.applicationToolStripMenuItem.Text = "Application";
             this.applicationToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+            // 
+            // settingsToolStripMenuItem1
+            // 
+            this.settingsToolStripMenuItem1.Name = "settingsToolStripMenuItem1";
+            this.settingsToolStripMenuItem1.Size = new System.Drawing.Size(116, 22);
+            this.settingsToolStripMenuItem1.Text = "Settings";
+            this.settingsToolStripMenuItem1.Click += new System.EventHandler(this.settingsToolStripMenuItem1_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(113, 6);
+            // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.aboutToolStripMenuItem.Text = "About";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click_1);
             // 
             // listView1
             // 
@@ -334,24 +357,17 @@
             this.bckOpen.WorkerSupportsCancellation = true;
             this.bckOpen.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bckOpen_DoWork);
             // 
-            // settingsToolStripMenuItem1
+            // toolStripSeparator2
             // 
-            this.settingsToolStripMenuItem1.Name = "settingsToolStripMenuItem1";
-            this.settingsToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
-            this.settingsToolStripMenuItem1.Text = "Settings";
-            this.settingsToolStripMenuItem1.Click += new System.EventHandler(this.settingsToolStripMenuItem1_Click);
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(236, 6);
             // 
-            // toolStripSeparator1
+            // exportToCSVToolStripMenuItem
             // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
-            // 
-            // aboutToolStripMenuItem
-            // 
-            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.aboutToolStripMenuItem.Text = "About";
-            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click_1);
+            this.exportToCSVToolStripMenuItem.Name = "exportToCSVToolStripMenuItem";
+            this.exportToCSVToolStripMenuItem.Size = new System.Drawing.Size(239, 22);
+            this.exportToCSVToolStripMenuItem.Text = "Export to CSV";
+            this.exportToCSVToolStripMenuItem.Click += new System.EventHandler(this.exportToCSVToolStripMenuItem_Click);
             // 
             // mainForm
             // 
@@ -388,37 +404,39 @@
 
         #endregion
 
-        private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem listToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem deleteSelectedToolStripMenuItem;
-        private System.Windows.Forms.ListView listView1;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
-        private System.Windows.Forms.ColumnHeader columnHeader3;
-        private System.Windows.Forms.StatusStrip statusStrip1;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
-        private System.Windows.Forms.ColumnHeader columnHeader2;
-        private System.Windows.Forms.ToolStripMenuItem clearToolStripMenuItem;
-        private System.Windows.Forms.ColumnHeader columnHeader4;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.PictureBox pictureBox3;
-        private System.ComponentModel.BackgroundWorker bckTest;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.PictureBox pictureBox4;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Button btnStartNow;
-        private System.Windows.Forms.ToolStripMenuItem applicationToolStripMenuItem;
-        private System.ComponentModel.BackgroundWorker bckOpen;
-        private System.Windows.Forms.CheckBox cbAutoScroll;
-        private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+        internal System.Windows.Forms.MenuStrip menuStrip1;
+        internal System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
+        internal System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
+        internal System.Windows.Forms.ToolStripMenuItem listToolStripMenuItem;
+        internal System.Windows.Forms.ToolStripMenuItem deleteSelectedToolStripMenuItem;
+        internal System.Windows.Forms.ListView listView1;
+        internal System.Windows.Forms.ColumnHeader columnHeader1;
+        internal System.Windows.Forms.ColumnHeader columnHeader3;
+        internal System.Windows.Forms.StatusStrip statusStrip1;
+        internal System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        internal System.Windows.Forms.ColumnHeader columnHeader2;
+        internal System.Windows.Forms.ToolStripMenuItem clearToolStripMenuItem;
+        internal System.Windows.Forms.ColumnHeader columnHeader4;
+        internal System.Windows.Forms.Panel panel1;
+        internal System.Windows.Forms.PictureBox pictureBox1;
+        internal System.Windows.Forms.Label label1;
+        internal System.Windows.Forms.Label label2;
+        internal System.Windows.Forms.PictureBox pictureBox2;
+        internal System.Windows.Forms.Label label3;
+        internal System.Windows.Forms.PictureBox pictureBox3;
+        internal System.ComponentModel.BackgroundWorker bckTest;
+        internal System.Windows.Forms.Label label4;
+        internal System.Windows.Forms.PictureBox pictureBox4;
+        internal System.Windows.Forms.Panel panel2;
+        internal System.Windows.Forms.Button btnStartNow;
+        internal System.Windows.Forms.ToolStripMenuItem applicationToolStripMenuItem;
+        internal System.ComponentModel.BackgroundWorker bckOpen;
+        internal System.Windows.Forms.CheckBox cbAutoScroll;
+        internal System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem1;
+        internal System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        internal System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+        internal System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        internal System.Windows.Forms.ToolStripMenuItem exportToCSVToolStripMenuItem;
     }
 }
 

@@ -1,9 +1,0 @@
-1.2.0.0
-(+) Auto Update Disabler
-(+) Settings ADDED - Settings.ini ADDED
-
-
-1.1.0.0
-(+) Delete previous information? ADDED
-(+) Clear (Name Exclude) QUESTION ADDED
-(+) Hotkey ADDED

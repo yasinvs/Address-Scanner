@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AddressScanner.Properties;
+using System;
 using System.Diagnostics;
 using System.Windows.Forms;
 
@@ -13,7 +14,9 @@ namespace AddressScanner.Forms
 
         private void aboutForm_Load(object sender, EventArgs e)
         {
+            Icon = Resources.Icojam_Blue_Bits_Globe_search;
             Text = "About - Address Scanner " + Application.ProductVersion;
+
             label3.Text = "Version : " + Application.ProductVersion;
         }
 

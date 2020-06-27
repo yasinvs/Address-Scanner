@@ -95,7 +95,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="bin\Debug\Address-Scanner.exe.config" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -135,14 +134,10 @@
     <None Include="Resources\Icojam-Blue-Bits-Database-search.ico" />
     <None Include="Resources\globe-search-icon.png" />
     <None Include="Resources\Icojam-Blue-Bits-Globe-search.ico" />
-    <Content Include="bin\Debug\Address-Scanner.exe" />
-    <Content Include="bin\Debug\Address-Scanner.pdb" />
-    <Content Include="_\_YAPILACAKLAR_.txt" />
+    <Content Include="_\_notlar_.txt" />
     <Content Include="_\Proxy List.txt" />
     <Content Include="_\sfsfsf.txt" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="bin\Release\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
