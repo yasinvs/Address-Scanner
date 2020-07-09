@@ -608,5 +608,21 @@ namespace AddressScanner.Forms
                 MessageBox.Show(this, "Export completed !", "Export to CSV", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
+
+        private void toolStripTextBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (listView1.FindItemWithText(toolStripTextBox1.Text) == null)
+                {
+                    listView1.Items.Add(toolStripTextBox1.Text);
+                }
+            }
+        }
+
+        private void toolStripTextBox1_Click(object sender, EventArgs e)
+        {
+            toolStripTextBox1.Text = "";
+        }
     }
 }
