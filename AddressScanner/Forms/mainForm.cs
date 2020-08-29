@@ -105,6 +105,14 @@ namespace AddressScanner.Forms
         private int pingWarning;
         private int count;
 
+        private void ListViewAdd(ListView listView, int i, PingReply pingReply)
+        {
+            if (Convert.ToString(pingReply.Address) != "")
+            {
+                listView.Items[i].SubItems.Add(Convert.ToString(pingReply.Address));
+            }
+        }
+
         internal void EnableDisable(bool value)
         {
             switch (value)
@@ -160,8 +168,10 @@ namespace AddressScanner.Forms
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            #region Form Properties
             Text = "Address Scanner " + Application.ProductVersion;
             Icon = Resources.Icojam_Blue_Bits_Globe_search;
+            #endregion
 
             #region ImageList
 
@@ -197,10 +207,13 @@ namespace AddressScanner.Forms
 
             #endregion Settings
 
+            #region Update
             if (SettingsClass.autoupdate == true)
             {
                 AutoUpdater.Start("https://raw.githubusercontent.com/yasinvs/Address-Scanner/master/AddressScanner/_/version.xml");
             }
+            #endregion
+
         }
 
         private void backgroundWorker1_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
@@ -237,12 +250,14 @@ namespace AddressScanner.Forms
                             listView1.Items[i].SubItems[2].Text = Convert.ToString(reply.Status);
                             listView1.Items[i].SubItems[3].Text = Convert.ToString(reply.RoundtripTime);
                         }
-                        catch { }
+                        catch 
+                        {
+                            listView1.Items[i].SubItems.Add(Convert.ToString(reply.Address));
+                            listView1.Items[i].SubItems.Add(Convert.ToString(reply.Status));
+                            listView1.Items[i].SubItems.Add(Convert.ToString(reply.RoundtripTime));
+                        }
 
-                        listView1.Items[i].SubItems.Add(Convert.ToString(reply.Address));
-                        listView1.Items[i].SubItems.Add(Convert.ToString(reply.Status));
-                        listView1.Items[i].SubItems.Add(Convert.ToString(reply.RoundtripTime));
-
+                        #region reply Status
                         switch (reply.Status)
                         {
                             case IPStatus.Success:
@@ -332,6 +347,8 @@ namespace AddressScanner.Forms
                             case IPStatus.Unknown:
                                 break;
                         }
+                        #endregion
+
 
                         label1.Text = "= " + Convert.ToString(pingSuccess);
                         label2.Text = "= " + Convert.ToString(pingError);
@@ -422,8 +439,8 @@ namespace AddressScanner.Forms
                         {
                             if (i2 != 0)
                             {
-                                listView1.Items[i].SubItems[i2].Text = "";
                                 listView1.Items[i].ImageIndex = -1;
+                                listView1.Items[i].SubItems[i2].Text = "";
                             }
                         }
                     }
@@ -436,6 +453,7 @@ namespace AddressScanner.Forms
                 label1.Text = "= " + Convert.ToString(pingSuccess);
                 label2.Text = "= " + Convert.ToString(pingError);
                 label3.Text = "= " + Convert.ToString(pingWarning);
+                listView1.Update();
             }
         }
 
