@@ -50,14 +50,14 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pbDatabase = new System.Windows.Forms.PictureBox();
+            this.lblDatabaseCount = new System.Windows.Forms.Label();
+            this.lblWarning = new System.Windows.Forms.Label();
+            this.pbWarning = new System.Windows.Forms.PictureBox();
+            this.lblError = new System.Windows.Forms.Label();
+            this.pbError = new System.Windows.Forms.PictureBox();
+            this.lblSuccess = new System.Windows.Forms.Label();
+            this.pbSuccess = new System.Windows.Forms.PictureBox();
             this.bckTest = new System.ComponentModel.BackgroundWorker();
             this.panel2 = new System.Windows.Forms.Panel();
             this.cbAutoScroll = new System.Windows.Forms.CheckBox();
@@ -66,10 +66,10 @@
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbDatabase)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbWarning)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbError)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbSuccess)).BeginInit();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -98,7 +98,7 @@
             this.openToolStripMenuItem.Image = global::AddressScanner.Properties.Resources.database_icon;
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
             this.openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.openToolStripMenuItem.Text = "Open &List";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
@@ -253,97 +253,97 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.pictureBox4);
-            this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.pictureBox3);
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.pictureBox2);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.pictureBox1);
+            this.panel1.Controls.Add(this.pbDatabase);
+            this.panel1.Controls.Add(this.lblDatabaseCount);
+            this.panel1.Controls.Add(this.lblWarning);
+            this.panel1.Controls.Add(this.pbWarning);
+            this.panel1.Controls.Add(this.lblError);
+            this.panel1.Controls.Add(this.pbError);
+            this.panel1.Controls.Add(this.lblSuccess);
+            this.panel1.Controls.Add(this.pbSuccess);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 24);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(375, 38);
             this.panel1.TabIndex = 3;
             // 
-            // pictureBox4
+            // pbDatabase
             // 
-            this.pictureBox4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pictureBox4.Image = global::AddressScanner.Properties.Resources.database_icon;
-            this.pictureBox4.Location = new System.Drawing.Point(293, 0);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(24, 38);
-            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox4.TabIndex = 8;
-            this.pictureBox4.TabStop = false;
+            this.pbDatabase.Dock = System.Windows.Forms.DockStyle.Right;
+            this.pbDatabase.Image = global::AddressScanner.Properties.Resources.database_icon;
+            this.pbDatabase.Location = new System.Drawing.Point(293, 0);
+            this.pbDatabase.Name = "pbDatabase";
+            this.pbDatabase.Size = new System.Drawing.Size(24, 38);
+            this.pbDatabase.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pbDatabase.TabIndex = 8;
+            this.pbDatabase.TabStop = false;
             // 
-            // label4
+            // lblDatabaseCount
             // 
-            this.label4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.label4.Location = new System.Drawing.Point(317, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(58, 38);
-            this.label4.TabIndex = 9;
-            this.label4.Text = "= 0";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblDatabaseCount.Dock = System.Windows.Forms.DockStyle.Right;
+            this.lblDatabaseCount.Location = new System.Drawing.Point(317, 0);
+            this.lblDatabaseCount.Name = "lblDatabaseCount";
+            this.lblDatabaseCount.Size = new System.Drawing.Size(58, 38);
+            this.lblDatabaseCount.TabIndex = 9;
+            this.lblDatabaseCount.Text = "= 0";
+            this.lblDatabaseCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label3
+            // lblWarning
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(180, 13);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(22, 13);
-            this.label3.TabIndex = 7;
-            this.label3.Text = "= 0";
+            this.lblWarning.AutoSize = true;
+            this.lblWarning.Location = new System.Drawing.Point(180, 13);
+            this.lblWarning.Name = "lblWarning";
+            this.lblWarning.Size = new System.Drawing.Size(22, 13);
+            this.lblWarning.TabIndex = 7;
+            this.lblWarning.Text = "= 0";
             // 
-            // pictureBox3
+            // pbWarning
             // 
-            this.pictureBox3.Image = global::AddressScanner.Properties.Resources.warning_icon;
-            this.pictureBox3.Location = new System.Drawing.Point(150, 7);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(24, 24);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox3.TabIndex = 6;
-            this.pictureBox3.TabStop = false;
+            this.pbWarning.Image = global::AddressScanner.Properties.Resources.warning_icon;
+            this.pbWarning.Location = new System.Drawing.Point(150, 7);
+            this.pbWarning.Name = "pbWarning";
+            this.pbWarning.Size = new System.Drawing.Size(24, 24);
+            this.pbWarning.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pbWarning.TabIndex = 6;
+            this.pbWarning.TabStop = false;
             // 
-            // label2
+            // lblError
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(110, 13);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(22, 13);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "= 0";
+            this.lblError.AutoSize = true;
+            this.lblError.Location = new System.Drawing.Point(110, 13);
+            this.lblError.Name = "lblError";
+            this.lblError.Size = new System.Drawing.Size(22, 13);
+            this.lblError.TabIndex = 3;
+            this.lblError.Text = "= 0";
             // 
-            // pictureBox2
+            // pbError
             // 
-            this.pictureBox2.Image = global::AddressScanner.Properties.Resources.symbol_delete_icon;
-            this.pictureBox2.Location = new System.Drawing.Point(80, 7);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(24, 24);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox2.TabIndex = 2;
-            this.pictureBox2.TabStop = false;
+            this.pbError.Image = global::AddressScanner.Properties.Resources.symbol_delete_icon;
+            this.pbError.Location = new System.Drawing.Point(80, 7);
+            this.pbError.Name = "pbError";
+            this.pbError.Size = new System.Drawing.Size(24, 24);
+            this.pbError.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pbError.TabIndex = 2;
+            this.pbError.TabStop = false;
             // 
-            // label1
+            // lblSuccess
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(42, 13);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(22, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "= 0";
+            this.lblSuccess.AutoSize = true;
+            this.lblSuccess.Location = new System.Drawing.Point(42, 13);
+            this.lblSuccess.Name = "lblSuccess";
+            this.lblSuccess.Size = new System.Drawing.Size(22, 13);
+            this.lblSuccess.TabIndex = 1;
+            this.lblSuccess.Text = "= 0";
             // 
-            // pictureBox1
+            // pbSuccess
             // 
-            this.pictureBox1.Image = global::AddressScanner.Properties.Resources.symbol_check_icon;
-            this.pictureBox1.Location = new System.Drawing.Point(12, 7);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(24, 24);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
+            this.pbSuccess.Image = global::AddressScanner.Properties.Resources.symbol_check_icon;
+            this.pbSuccess.Location = new System.Drawing.Point(12, 7);
+            this.pbSuccess.Name = "pbSuccess";
+            this.pbSuccess.Size = new System.Drawing.Size(24, 24);
+            this.pbSuccess.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pbSuccess.TabIndex = 0;
+            this.pbSuccess.TabStop = false;
             // 
             // bckTest
             // 
@@ -412,10 +412,10 @@
             this.statusStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbDatabase)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbWarning)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbError)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbSuccess)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.ResumeLayout(false);
@@ -439,15 +439,15 @@
         internal System.Windows.Forms.ToolStripMenuItem clearToolStripMenuItem;
         internal System.Windows.Forms.ColumnHeader columnHeader4;
         internal System.Windows.Forms.Panel panel1;
-        internal System.Windows.Forms.PictureBox pictureBox1;
-        internal System.Windows.Forms.Label label1;
-        internal System.Windows.Forms.Label label2;
-        internal System.Windows.Forms.PictureBox pictureBox2;
-        internal System.Windows.Forms.Label label3;
-        internal System.Windows.Forms.PictureBox pictureBox3;
+        internal System.Windows.Forms.PictureBox pbSuccess;
+        internal System.Windows.Forms.Label lblSuccess;
+        internal System.Windows.Forms.Label lblError;
+        internal System.Windows.Forms.PictureBox pbError;
+        internal System.Windows.Forms.Label lblWarning;
+        internal System.Windows.Forms.PictureBox pbWarning;
         internal System.ComponentModel.BackgroundWorker bckTest;
-        internal System.Windows.Forms.Label label4;
-        internal System.Windows.Forms.PictureBox pictureBox4;
+        internal System.Windows.Forms.Label lblDatabaseCount;
+        internal System.Windows.Forms.PictureBox pbDatabase;
         internal System.Windows.Forms.Panel panel2;
         internal System.Windows.Forms.Button btnStartNow;
         internal System.Windows.Forms.ToolStripMenuItem applicationToolStripMenuItem;

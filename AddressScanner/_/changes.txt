@@ -1,0 +1,4 @@
+1.4.0
+- DISABLED Update installing with Runasadmin
+- FIXED issue where timeout value was changed but not applied
+- OPTIMIZED code
