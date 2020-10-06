@@ -6,5 +6,5 @@ You can learn the status of multiple addresses with this program.
 - Detail Address Status
 - Auto Updater Software
 - Adding an address without opening a new list
-- Exporting information (csv or txt)
+- Exporting information (csv)
 
